@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Educación Inclusiva Comparada — América Latina | UNAB</title>
+<style>
+  :root{
+    --naranja:#e9a427; --morado:#8600dd; --gris:#929496; --gris-claro:#f4f2ef;
+    --tinta:#2b2b2b; --tinta-suave:#555; --blanco:#ffffff; --crema:#fdfaf3;
+    --verde:#008e6c; --rojo:#cb1d11; --azul:#00aff1;
+    --sombra:0 10px 30px rgba(43,43,43,.10);
+    --radio:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Open Sans","Segoe UI",system-ui,sans-serif;color:var(--tinta);background:var(--blanco);line-height:1.65;overflow-x:hidden}
+  /* ===== LEGAL VERTICAL (Manual de Marca UNAB) ===== */
+  .legal{position:fixed;left:0;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:mixed;
+    background:var(--tinta);color:#fff;font-size:.62rem;letter-spacing:.22em;padding:14px 5px;border-radius:0 8px 8px 0;z-index:60}
+  /* ===== PROGRESS RAIL ===== */
+  .rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:12px}
+  .rail a{width:11px;height:11px;border-radius:50%;background:#e3ddd2;border:2px solid #e3ddd2;display:block;transition:.3s}
+  .rail a.act{background:var(--naranja);border-color:var(--naranja);transform:scale(1.35)}
+  @media(max-width:820px){.rail{display:none}.legal{display:none}}
+  /* ===== HEADER UNAB ===== */
+  header{position:relative;padding:26px 34px;display:flex;justify-content:space-between;align-items:center;background:var(--blanco);position:sticky;top:0;z-index:50;border-bottom:1px solid #efeae0}
+  .logo-unab{display:flex;align-items:center;gap:10px}
+  .logo-unab .marca{background:var(--naranja);color:#fff;font-weight:800;font-size:1.15rem;padding:7px 12px;border-radius:9px;letter-spacing:.03em}
+  .logo-unab .nombre{font-size:.68rem;color:var(--gris);text-transform:uppercase;letter-spacing:.14em;max-width:200px;line-height:1.35}
+  .tagline{font-size:.72rem;color:var(--gris);letter-spacing:.08em;text-transform:uppercase}
+  /* ===== HERO ===== */
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    padding:60px 22px;background:linear-gradient(180deg,var(--crema) 0%,#fff 100%);position:relative;overflow:hidden}
+  .hero .aurora{position:absolute;width:560px;height:560px;border-radius:50%;filter:blur(90px);opacity:.16;pointer-events:none}
+  .a1{background:var(--naranja);top:-160px;left:-120px}.a2{background:var(--morado);bottom:-200px;right:-100px}
+  .kicker{display:inline-block;background:#fff;border:1.5px solid var(--naranja);color:var(--tinta);font-size:.72rem;
+    font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border-radius:999px;margin-bottom:26px;box-shadow:var(--sombra)}
+  .hero h1{font-size:clamp(2rem,5.2vw,3.6rem);font-weight:800;line-height:1.12;max-width:900px}
+  .hero h1 em{font-style:normal;color:var(--naranja)}
+  .hero h1 em.m{color:var(--morado)}
+  .hero p.sub{max-width:680px;margin:24px auto 0;color:var(--tinta-suave);font-size:1.05rem}
+  .hero .tesis{margin-top:30px;max-width:720px;background:#fff;border-left:5px solid var(--morado);padding:18px 22px;border-radius:0 var(--radio) var(--radio) 0;box-shadow:var(--sombra);text-align:left;font-size:.95rem}
+  .hero .tesis strong{color:var(--morado)}
+  .scroll-hint{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--gris);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase}
+  .scroll-hint .mouse{width:24px;height:38px;border:2px solid var(--gris);border-radius:13px;position:relative}
+  .scroll-hint .mouse::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;background:var(--naranja);border-radius:3px;transform:translateX(-50%);animation:rueda 1.6s infinite}
+  @keyframes rueda{0%{opacity:1;top:7px}70%{opacity:0;top:20px}100%{opacity:0}}
+  /* ===== SECTIONS ===== */
+  section{max-width:940px;margin:0 auto;padding:90px 24px 30px}
+  .num{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .num span.n{font-size:.8rem;font-weight:800;color:#fff;background:var(--naranja);padding:4px 11px;border-radius:8px}
+  .num span.n.m{background:var(--morado)}
+  h2{font-size:clamp(1.45rem,3vw,2.1rem);font-weight:800;line-height:1.2;margin-bottom:10px}
+  .lead{color:var(--tinta-suave);max-width:720px;margin-bottom:34px}
+  /* reveal */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}.rv.d4{transition-delay:.48s}
+  /* ===== S1 BARRERAS ===== */
+  .barriers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.barriers{grid-template-columns:1fr}}
+  .flip{background:#fff;border:1.5px solid #efe8da;border-radius:var(--radio);padding:24px;cursor:pointer;position:relative;min-height:210px;box-shadow:var(--sombra);transition:.35s}
+  .flip:hover{transform:translateY(-5px);border-color:var(--naranja)}
+  .flip .ic{font-size:1.9rem;margin-bottom:10px}
+  .flip h3{font-size:1.02rem;font-weight:800;margin-bottom:8px}
+  .flip p{font-size:.86rem;color:var(--tinta-suave)}
+  .flip .det{max-height:0;overflow:hidden;transition:max-height .5s ease}
+  .flip.open .det{max-height:420px}
+  .flip .det .resp{margin-top:14px;background:var(--crema);border-left:4px solid var(--morado);padding:12px 14px;border-radius:0 8px 8px 0;font-size:.83rem}
+  .flip .plus{position:absolute;top:18px;right:18px;width:26px;height:26px;border-radius:50%;background:var(--naranja);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;transition:.3s}
+  .flip.open .plus{transform:rotate(45deg);background:var(--morado)}
+  .nota-just{margin-top:26px;background:linear-gradient(135deg,#fff, #fdf6e8);border:1.5px dashed var(--naranja);border-radius:var(--radio);padding:20px 24px;font-size:.92rem}
+  .nota-just strong{color:var(--naranja)}
+  /* ===== S2 PAISES ===== */
+  .paises{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:820px){.paises{grid-template-columns:repeat(2,1fr)}}
+  .pais{background:#fff;border-radius:var(--radio);border:1.5px solid #efe8da;padding:20px 16px;text-align:center;cursor:pointer;transition:.35s;box-shadow:var(--sombra)}
+  .pais:hover{transform:translateY(-6px)}
+  .pais.sel{border-color:var(--naranja);background:var(--crema)}
+  .pais .flag{font-size:2.2rem}
+  .pais h3{font-size:.95rem;font-weight:800;margin:8px 0 4px}
+  .pais .rol{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--morado)}
+  .pais p.mec{font-size:.78rem;color:var(--tinta-suave);margin-top:10px}
+  #pais-det{margin-top:22px;background:#fff;border-radius:var(--radio);border:1.5px solid var(--naranja);padding:26px;box-shadow:var(--sombra);min-height:120px}
+  #pais-det h3{font-weight:800;margin-bottom:6px}
+  #pais-det .porque{color:var(--tinta-suave);font-size:.92rem}
+  /* ===== S3 MODELOS (acordeón fichas) ===== */
+  .acc{border:1.5px solid #efe8da;border-radius:var(--radio);overflow:hidden;background:#fff;box-shadow:var(--sombra);margin-bottom:14px}
+  .acc-h{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;background:#fff;transition:.3s;list-style:none}
+  .acc-h:hover{background:var(--crema)}
+  .acc-h .flag{font-size:1.5rem}
+  .acc-h .tt{flex:1}
+  .acc-h .tt b{display:block;font-size:1rem}
+  .acc-h .tt small{color:var(--gris);font-size:.76rem;text-transform:uppercase;letter-spacing:.08em}
+  .acc-h .chev{transition:.35s;color:var(--naranja);font-weight:800;font-size:1.2rem}
+  .acc.open .chev{transform:rotate(180deg)}
+  .acc-b{max-height:0;overflow:hidden;transition:max-height .7s ease}
+  .acc.open .acc-b{max-height:1400px}
+  .acc-b .inner{padding:6px 24px 24px;border-top:1px dashed #e8e0d0}
+  .acc-b .inner h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--naranja);margin:16px 0 4px;font-weight:800}
+  .acc-b .inner h4.m{color:var(--morado)}
+  .acc-b .inner p{font-size:.88rem;color:var(--tinta-suave)}
+  .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  @media(max-width:700px){.pros-cons{grid-template-columns:1fr}}
+  .pro,.con{border-radius:10px;padding:14px 16px;font-size:.84rem}
+  .pro{background:#eef8f3;border-left:4px solid var(--verde)}
+  .con{background:#fdf0ee;border-left:4px solid var(--rojo)}
+  .pro b,.con b{display:block;margin-bottom:4px;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+  .pro b{color:var(--verde)}.con b{color:var(--rojo)}
+  /* ===== S4 MAPA CONCEPTUAL ===== */
+  .mapa-wrap{background:var(--crema);border-radius:var(--radio);padding:20px;border:1.5px solid #efe8da;box-shadow:var(--sombra)}
+  .mapa-svg{width:100%;height:auto;display:block}
+  .mapa-svg .nodo{cursor:pointer}
+  .mapa-svg .nodo rect{transition:.3s}
+  .mapa-svg .nodo:hover rect{filter:brightness(.94)}
+  .mapa-svg text{font-family:inherit}
+  .mapa-leyenda{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:.78rem;color:var(--tinta-suave)}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #e5ddcc;border-radius:999px;padding:4px 12px}
+  .chip i{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .lectura{margin-top:18px;background:#fff;border-left:5px solid var(--naranja);padding:16px 20px;border-radius:0 10px 10px 0;font-size:.9rem;box-shadow:var(--sombra)}
+  /* ===== S5 MATRIZ INTERACTIVA ===== */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .tab{border:1.5px solid #e5ddcc;background:#fff;border-radius:999px;padding:9px 18px;cursor:pointer;font-weight:700;font-size:.8rem;transition:.3s;color:var(--tinta)}
+  .tab:hover{border-color:var(--naranja)}
+  .tab.act{background:var(--naranja);border-color:var(--naranja);color:#fff}
+  .matriz{background:#fff;border-radius:var(--radio);border:1.5px solid #efe8da;overflow:hidden;box-shadow:var(--sombra)}
+  .matriz table{width:100%;border-collapse:collapse;font-size:.84rem}
+  .matriz th{background:var(--tinta);color:#fff;padding:13px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.09em}
+  .matriz th:first-child{background:transparent}
+  .matriz td{padding:13px 12px;border-bottom:1px solid #f1ebe0;vertical-align:top;color:var(--tinta-suave)}
+  .matriz td:first-child{font-weight:800;color:var(--tinta);white-space:nowrap}
+  .matriz tr:hover td{background:var(--crema)}
+  @media(max-width:720px){.matriz td:first-child{white-space:normal}}
+  .tabpane{display:none}.tabpane.act{display:block;animation:fadein .5s}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  /* ===== S6 PARTICIPACIÓN ===== */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:30px}
+  @media(max-width:820px){.stats{grid-template-columns:1fr}}
+  .stat{background:#fff;border-radius:var(--radio);padding:22px;border:1.5px solid #efe8da;box-shadow:var(--sombra);text-align:center}
+  .stat .big{font-size:2.3rem;font-weight:800;color:var(--naranja)}
+  .stat .big.m{color:var(--morado)}
+  .stat .big.r{color:var(--rojo)}
+  .stat p{font-size:.8rem;color:var(--tinta-suave);margin-top:4px}
+  .bars{background:#fff;border-radius:var(--radio);border:1.5px solid #efe8da;padding:26px;box-shadow:var(--sombra)}
+  .bar-row{margin-bottom:18px}
+  .bar-row .lbl{display:flex;justify-content:space-between;font-size:.83rem;font-weight:700;margin-bottom:6px}
+  .bar-row .lbl span.v{color:var(--morado)}
+  .track{background:var(--gris-claro);border-radius:999px;height:16px;overflow:hidden}
+  .fill{height:100%;width:0;border-radius:999px;transition:width 1.4s cubic-bezier(.25,.8,.3,1);background:linear-gradient(90deg,var(--naranja),var(--morado))}
+  .esperada{font-size:.78rem;color:var(--gris);font-style:italic}
+  .revealer{margin-top:22px;text-align:center}
+  .btn-unab{background:var(--morado);color:#fff;border:none;border-radius:999px;padding:12px 26px;font-weight:800;font-size:.85rem;cursor:pointer;transition:.3s;box-shadow:var(--sombra)}
+  .btn-unab:hover{transform:translateY(-2px);background:var(--naranja)}
+  .hidden-rank{display:none;margin-top:18px}
+  .hidden-rank.show{display:block;animation:fadein .6s}
+  .rank-item{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid #efe8da;border-left:5px solid var(--naranja);border-radius:10px;padding:12px 16px;margin-bottom:9px;font-size:.85rem}
+  .rank-item b{min-width:26px;height:26px;border-radius:50%;background:var(--naranja);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem}
+  .rank-item:nth-child(1){border-left-color:var(--verde)}
+  .rank-item:nth-child(1) b{background:var(--verde)}
+  .rank-item:nth-child(4){border-left-color:var(--rojo)}
+  .rank-item:nth-child(4) b{background:var(--rojo)}
+  /* ===== S7 MODELO IDEAL ===== */
+  .piezas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.piezas{grid-template-columns:1fr}}
+  .pieza{background:#fff;border:1.5px solid #efe8da;border-radius:var(--radio);padding:20px;cursor:pointer;transition:.35s;box-shadow:var(--sombra);text-align:center}
+  .pieza:hover{transform:translateY(-5px)}
+  .pieza.on{border-color:var(--morado);background:linear-gradient(180deg,#fff,#f7edff)}
+  .pieza .ic{font-size:1.8rem}
+  .pieza h3{font-size:.92rem;font-weight:800;margin:8px 0 4px}
+  .pieza small{color:var(--morado);font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+  .pieza p{font-size:.8rem;color:var(--tinta-suave);margin-top:8px}
+  .ideal-target{margin-top:26px;background:linear-gradient(135deg,var(--tinta),#4a3a10);border-radius:var(--radio);padding:30px;color:#fff;text-align:center;position:relative;overflow:hidden}
+  .ideal-target .t1{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--naranja);font-weight:800}
+  .ideal-target h3{font-size:1.5rem;font-weight:800;margin:8px 0 12px}
+  .ideal-slot{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.09);border:1.5px dashed rgba(255,255,255,.4);border-radius:999px;padding:8px 18px;margin:4px;font-size:.8rem;opacity:.45;transition:.5s}
+  .ideal-slot.on{opacity:1;background:rgba(233,164,39,.25);border-color:var(--naranja);border-style:solid}
+  .ideal-msg{margin-top:14px;font-size:.85rem;color:#e8dcc4;min-height:24px}
+  /* ===== S8 INVESTIGACIÓN ===== */
+  .pregunta-box{background:linear-gradient(135deg,#fff,var(--crema));border:1.5px solid var(--naranja);border-radius:var(--radio);padding:28px;box-shadow:var(--sombra)}
+  .pregunta-box .pq{font-size:1.12rem;font-weight:700;line-height:1.5}
+  .subq{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+  @media(max-width:820px){.subq{grid-template-columns:1fr}}
+  .subq .q{background:#fff;border-radius:12px;padding:16px;border-top:4px solid var(--morado);font-size:.82rem;cursor:pointer;transition:.3s;color:var(--tinta-suave)}
+  .subq .q:hover{transform:translateY(-3px)}
+  .subq .q b{display:block;color:var(--tinta);margin-bottom:5px;font-size:.9rem}
+  .hipos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.hipos{grid-template-columns:1fr}}
+  .hipo{background:#fff;border:1.5px solid #efe8da;border-radius:var(--radio);padding:20px;box-shadow:var(--sombra);position:relative;overflow:hidden}
+  .hipo::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--naranja),var(--morado))}
+  .hipo .h-tag{font-size:.68rem;font-weight:800;color:var(--morado);letter-spacing:.12em}
+  .hipo p{font-size:.85rem;margin-top:8px;color:var(--tinta-suave)}
+  .hipo .verif{margin-top:12px;font-size:.74rem;color:var(--gris);border-top:1px dashed #e5dcc8;padding-top:10px}
+  .marco-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:820px){.marco-grid{grid-template-columns:1fr}}
+  .marco-card{background:#fff;border:1.5px solid #efe8da;border-radius:var(--radio);padding:22px;box-shadow:var(--sombra)}
+  .marco-card h3{font-size:.98rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .dua-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .dua-3 div{background:var(--crema);border-radius:10px;padding:10px;text-align:center;font-size:.72rem;font-weight:700;cursor:pointer;transition:.3s;border:1.5px solid transparent}
+  .dua-3 div:hover{border-color:var(--morado);transform:translateY(-3px)}
+  .dua-3 div span{display:block;font-weight:400;color:var(--tinta-suave);margin-top:4px;font-size:.68rem}
+  .vs{display:flex;gap:10px;margin-top:6px}
+  .vs div{flex:1;border-radius:10px;padding:12px;font-size:.78rem}
+  .vs .bio{background:#fdf0ee;border:1.5px solid #f0cfc9}
+  .vs .soc{background:#eef8f3;border:1.5px solid #c8e8db}
+  .vs b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+  .idx3{display:flex;gap:8px;margin-top:10px}
+  .idx3 div{flex:1;background:linear-gradient(180deg,#fff,#f7edff);border:1.5px solid #e4d4f5;border-radius:10px;padding:10px;text-align:center;font-size:.72rem;font-weight:700;cursor:pointer;transition:.3s}
+  .idx3 div:hover{transform:translateY(-3px);border-color:var(--morado)}
+  .idx3 div small{display:block;font-weight:400;color:var(--tinta-suave);margin-top:3px;font-size:.66rem}
+  /* ===== FOOTER ===== */
+  footer{margin-top:70px;background:var(--tinta);color:#cfc7ba;padding:50px 24px 34px;text-align:center}
+  footer .fm{font-size:.78rem;max-width:640px;margin:10px auto 0;line-height:1.8}
+  footer .fm b{color:#fff}
+  footer .legal-f{margin-top:22px;font-size:.62rem;letter-spacing:.22em;color:#8d8577}
+</style>
+</head>
+<body>
+<div class="legal">VIGILADA MINEDUCACIÓN</div>
+<nav class="rail" id="rail">
+  <a href="#s1" title="Punto de partida"></a><a href="#s2" title="Los cuatro países"></a><a href="#s3" title="Los modelos"></a>
+  <a href="#s4" title="¿Qué dispara el apoyo?"></a><a href="#s5" title="Metodologías de aula"></a><a href="#s6" title="Participación real"></a>
+  <a href="#s7" title="El modelo ideal"></a><a href="#s8" title="La investigación"></a>
+</nav>
+
+<header>
+  <div class="logo-unab">
+    <div class="marca">unab</div>
+    <div class="nombre">Universidad Autónoma de Bucaramanga</div>
+  </div>
+  <div class="tagline">Investigación · Educación Inclusiva</div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="aurora a1"></div><div class="aurora a2"></div>
+  <span class="kicker rv">Un viaje por los modelos de educación inclusiva de América Latina</span>
+  <h1 class="rv d1">De las barreras detectadas<br>al <em class="m">modelo ideal</em> de la región</h1>
+  <p class="sub rv d2">Una infografía interactiva que compara cómo Colombia, Chile, Brasil y Costa Rica convierten sus políticas en metodologías de aula — y qué lecciones deberían construir el modelo inclusivo que América Latina necesita.</p>
+  <div class="tesis rv d3"><strong>¿Por qué estas características y no otras?</strong> Cada decisión de este estudio existe para <strong>eliminar las barreras que la evidencia ya detectó</strong>: los estados del arte regionales mostraron que falta investigación sobre participación estudiantil real, políticas inclusivas comparadas y datos empíricos de aula. Este diseño ataca exactamente esos tres vacíos.</div>
+  <div class="scroll-hint rv d4"><div class="mouse"></div>Desliza para descubrir</div>
+</div>
+
+<!-- ============ S1: PUNTO DE PARTIDA ============ -->
+<section id="s1">
+  <div class="num rv"><span class="n">01</span></div>
+  <h2 class="rv">El punto de partida: tres barreras en la evidencia</h2>
+  <p class="lead rv d1">Las revisiones sistemáticas de la producción científica latinoamericana (2020–2024) coinciden en un diagnóstico: la región investiga mucho sobre <em>barreras</em>, pero poco sobre <em>soluciones comparadas</em>. Toca cada barrera para ver cómo este estudio la elimina.</p>
+  <div class="barriers">
+    <div class="flip rv d1" onclick="this.classList.toggle('open')">
+      <span class="plus">+</span>
+      <div class="ic">🔍</div><h3>Poca investigación sobre participación estudiantil real</h3>
+      <p>Los sistemas miden <em>matrícula</em>, no <em>participación dentro del aula</em>. Un estudiante puede estar matriculado y seguir excluido de las actividades comunes.</p>
+      <div class="det"><div class="resp"><b>Nuestra respuesta:</b> medimos el "tiempo efectivo de participación en actividades comunes" mediante observación directa de aula en 16 aulas de 4 países.</div></div>
+    </div>
+    <div class="flip rv d2" onclick="this.classList.toggle('open')">
+      <span class="plus">+</span>
+      <div class="ic">⚖️</div><h3>Ausencia de políticas inclusivas comparadas</h3>
+      <p>La única comparación existente (OEI, 2024) mide la adopcición del DUA, no la eficacia de los mecanismos operativos completos: financiamiento, servicios y currículo.</p>
+      <div class="det"><div class="resp"><b>Nuestra respuesta:</b> comparamos 4 países con racionalidades estructuralmente distintas, usando el método de Bereday (descripción → interpretación → yuxtaposición → comparación).</div></div>
+    </div>
+    <div class="flip rv d3" onclick="this.classList.toggle('open')">
+      <span class="plus">+</span>
+      <div class="ic">🧪</div><h3>Escasez de datos empíricos de aula</h3>
+      <p>Predominan estudios normativos y documentales. Lo que pasa <em>dentro</em> del aula cuando una política llega a ella casi no tiene evidencia en la región.</p>
+      <div class="det"><div class="resp"><b>Nuestra respuesta:</b> 8 escuelas (urbana + rural por país), entrevistas a 32 docentes, 16 directivos, 16 familias y grupos focales con estudiantes, codificados con el Índice de Inclusión.</div></div>
+    </div>
+  </div>
+  <div class="nota-just rv d2"><strong>Argumento que guía todo el diseño:</strong> no elegimos países "buenos" ni "malos"; elegimos <strong>racionalidades distintas</strong> (etiqueta diagnóstica, servicio complementario, barreras del entorno) para que el contraste revelara, con rigor, qué características producen más inclusión real. La meta no es describir: es <strong>eliminar las barreras que el primer estudio detectó</strong>.</div>
+</section>
+
+<!-- ============ S2: PAÍSES ============ -->
+<section id="s2">
+  <div class="num rv"><span class="n">02</span></div>
+  <h2 class="rv">Cuatro países, cuatro lógicas distintas</h2>
+  <p class="lead rv d1">Colombia es el caso base; los otros tres fueron elegidos porque cada uno aporta un mecanismo <em>estructuralmente diferente</em>. Selecciona un país para descubrir por qué enriquece la comparación.</p>
+  <div class="paises">
+    <div class="pais rv d1 sel" data-p="co" onclick="selPais('co',this)"><div class="flag">🇨🇴</div><h3>Colombia</h3><div class="rol">Caso base</div><p class="mec">Modelo social + DUA</p></div>
+    <div class="pais rv d2" data-p="cl" onclick="selPais('cl',this)"><div class="flag">🇨🇱</div><h3>Chile</h3><div class="rol">Contraste biomédico-financiero</div><p class="mec">PIE + financiamiento por diagnóstico</p></div>
+    <div class="pais rv d3" data-p="br" onclick="selPais('br',this)"><div class="flag">🇧🇷</div><h3>Brasil</h3><div class="rol">Contraste complementario</div><p class="mec">AEE + Salas de Recursos</p></div>
+    <div class="pais rv d4" data-p="cr" onclick="selPais('cr',this)"><div class="flag">🇨🇷</div><h3>Costa Rica</h3><div class="rol">Contraste curricular puro</div><p class="mec">DUA general del sistema</p></div>
+  </div>
+  <div id="pais-det" class="rv d2">
+    <h3>🇨🇴 Colombia — el punto de partida</h3>
+    <p class="porque">Compartimos su base teórica (modelo social + DUA) pero vamos más lejos en lo operativo: permite estudiar la inclusión <b>sin etiquetas ni servicios paralelos</b>. Es el "gemelo metodológico" que revela qué le falta a Colombia en implementación.</p>
+  </div>
+</section>
+
+<!-- ============ S3: MODELOS ============ -->
+<section id="s3">
+  <div class="num rv"><span class="n m">03</span></div>
+  <h2 class="rv">Descubrimos cada modelo, con lupa</h2>
+  <p class="lead rv d1">Analizamos rigurosamente los cuatro mecanismos con la misma estructura: <b>teoría → fundamento → mecanismo → metodología de aula → aciertos y límites</b>. Abre cada ficha y compara.</p>
+
+  <div class="acc rv d1">
+    <li class="acc-h" onclick="this.parentElement.classList.toggle('open')"><span class="flag">🇨🇴</span><span class="tt"><b>Colombia — Modelo social + DUA</b><small>Caso base · Ley 1618/2013 · Decreto 1421/2017</small></span><span class="chev">▾</span></li>
+    <div class="acc-b"><div class="inner">
+      <h4>Teoría dominante</h4><p>Modelo social de la discapacidad: las barreras están en el entorno, no en la persona. DUA como marco metodológico transversal.</p>
+      <h4>Mecanismo y metodología de aula</h4><p>Identificación de barreras escolares; apoyos desde el aula regular sin servicio paralelo obligatorio; DUA en planeación (representación, acción/expresión, implicación); ajustes razonables y evaluación formativa diferenciada.</p>
+      <div class="pros-cons">
+        <div class="pro"><b>✓ Aciertos</b>Definición amplia de diversidad (etnia, género, discapacidad, migración). Paradigma alineado con la evidencia internacional más avanzada.</div>
+        <div class="con"><b>⚠ Límites</b>Brecha de implementación: lineamientos con poca reglamentación operativa; formación docente en DUA incipiente y desigual entre entes territoriales.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc rv d2">
+    <li class="acc-h" onclick="this.parentElement.classList.toggle('open')"><span class="flag">🇨🇱</span><span class="tt"><b>Chile — Modelo biomédico-financiero</b><small>Contraste estructural · Decreto 170/2009 · Ley 20.845/2015</small></span><span class="chev">▾</span></li>
+    <div class="acc-b"><div class="inner">
+      <h4>Teoría dominante</h4><p>Modelo médico/déficit: el <b>diagnóstico individual</b> es la puerta de entrada al apoyo, combinado con lógica de subvención estatal por estudiante identificado.</p>
+      <h4>Mecanismo y metodología de aula</h4><p>PIE: subvención por cada estudiante con diagnóstico (NEET/NEEP); evaluación diagnóstica integral obligatoria de ingreso y egreso; docente diferencial co-docando; plan de apoyo individual (PIA); adecuaciones curriculares graduadas.</p>
+      <div class="pros-cons">
+        <div class="pro"><b>✓ Aciertos</b>Financiamiento asegurado y previsible (único en la región); instrumentos diagnósticos estandarizados; alta cobertura municipal urbana.</div>
+        <div class="con"><b>⚠ Límites documentados</b>El Decreto 170 "solo regula la selección de quiénes reciben financiamiento, sin indicar procesos de integración" (Peña, 2013). Escuelas rurales: solo 33% participan en PIE. Burocratización del docente diferencial. Tensión SIMCE vs. equidad.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc rv d3">
+    <li class="acc-h" onclick="this.parentElement.classList.toggle('open')"><span class="flag">🇧🇷</span><span class="tt"><b>Brasil — Modelo social-complementario</b><small>Servicio sin sustitución · Política 2008 · Decreto 7.611/2011 · Ley 13.146/2015</small></span><span class="chev">▾</span></li>
+    <div class="acc-b"><div class="inner">
+      <h4>Teoría dominante</h4><p>Modelo social con operación complementaria: el derecho es al aula común; el apoyo es un servicio <b>complementario, nunca sustitutivo</b>.</p>
+      <h4>Mecanismo y metodología de aula</h4><p>AEE en Salas de Recursos Multifuncionales (contraturno, misma escuela); matrícula dual obligatoria; docente AEE elabora recursos y tecnologías asistivas para eliminar barreras; trabajo colaborativo integrado al proyecto político-pedagógico.</p>
+      <div class="pros-cons">
+        <div class="pro"><b>✓ Aciertos</b>Protección jurídica explícita del aula común ("en ninguna hipótesis el AEE sustituye la clase común"). Mayor eficiencia institucional de la región en formación docente (índice 1.000 en 2023–24, Emerald 2025).</div>
+        <div class="con"><b>⚠ Límites</b>En la práctica el AEE a veces opera como espacio paralelo desacoplado del aula; dependencia de la capacidad municipal; débil formación del docente de aula común en inclusión.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc rv d4">
+    <li class="acc-h" onclick="this.parentElement.classList.toggle('open')"><span class="flag">🇨🇷</span><span class="tt"><b>Costa Rica — Modelo social-curricular puro</b><small>Inclusión sin etiquetas · Ley 7600 · Ley 8661 · Decreto 40955-MEP</small></span><span class="chev">▾</span></li>
+    <div class="acc-b"><div class="inner">
+      <h4>Teoría dominante</h4><p>Modelo social llevado al currículo: inclusión como transformación general del sistema, <b>sin etiquetas diagnósticas</b> como puerta de entrada.</p>
+      <h4>Mecanismo y metodología de aula</h4><p>Accesibilidad universal (física, curricular, comunicacional); apoyo desde la escuela regular vía comités de apoyo institucionales; DUA como metodología general: "flexibilización del currículo, metodologías abiertas, cabida a todas las formas de aprendizaje".</p>
+      <div class="pros-cons">
+        <div class="pro"><b>✓ Aciertos</b>Sin estigmatización por etiqueta; adopcición del DUA más plena de la región según OEI 2024; coherencia total entre teoría y práctica metodológica.</div>
+        <div class="con"><b>⚠ Límites</b>Sin financiamiento vinculado a identificación, los apoyos intensivos dependen del presupuesto general y pueden ser insuficientes; menor producción de datos por estudiante.</div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ S4: MAPA CONCEPTUAL ============ -->
+<section id="s4">
+  <div class="num rv"><span class="n m">04</span></div>
+  <h2 class="rv">El hallazgo clave: ¿qué dispara el apoyo?</h2>
+  <p class="lead rv d1">Tras analizar los cuatro modelos con la misma lupa, una variable emerge como corazón de la comparación: la <b>puerta de entrada al apoyo</b>. Los cuatro hablan el lenguaje del DUA y las barreras… pero no todos activan el apoyo de la misma forma. Pasa el cursor por cada ruta.</p>
+  <div class="mapa-wrap rv d2">
+    <svg class="mapa-svg" viewBox="0 0 860 330" role="img" aria-label="Mapa conceptual: qué dispara el apoyo en cada país">
+      <defs>
+        <marker id="fl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#929496"/></marker>
+      </defs>
+      <text x="430" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#8600dd">¿QUÉ DISPARA EL APOYO EN CADA SISTEMA?</text>
+      <!-- fila 1 -->
+      <g class="nodo"><rect x="20" y="55" width="250" height="46" rx="10" fill="#cb1d11"/><text x="145" y="83" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">🇨🇱 Etiqueta diagnóstica (Chile)</text></g>
+      <g class="nodo"><rect x="305" y="55" width="250" height="46" rx="10" fill="#008e6c"/><text x="430" y="83" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">🇧🇷 Servicio complementario (Brasil)</text></g>
+      <g class="nodo"><rect x="590" y="55" width="250" height="46" rx="10" fill="#e9a427"/><text x="715" y="83" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">🇨🇴🇨🇷 Barreras del entorno</text></g>
+      <!-- flechas -->
+      <line x1="145" y1="101" x2="145" y2="150" stroke="#929496" stroke-width="2" marker-end="url(#fl)"/>
+      <line x1="430" y1="101" x2="430" y2="150" stroke="#929496" stroke-width="2" marker-end="url(#fl)"/>
+      <line x1="715" y1="101" x2="715" y2="150" stroke="#929496" stroke-width="2" marker-end="url(#fl)"/>
+      <!-- fila 2 -->
+      <g class="nodo"><rect x="20" y="152" width="250" height="46" rx="10" fill="#fdf0ee" stroke="#cb1d11" stroke-width="2"/><text x="145" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#cb1d11">Subvención por diagnóstico</text><text x="145" y="188" text-anchor="middle" font-size="9.5" fill="#7a4a44">sin diagnóstico → sin apoyo</text></g>
+      <g class="nodo"><rect x="305" y="152" width="250" height="46" rx="10" fill="#eef8f3" stroke="#008e6c" stroke-width="2"/><text x="430" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#008e6c">AEE en Sala de Recursos</text><text x="430" y="188" text-anchor="middle" font-size="9.5" fill="#3d6e5c">matrícula dual: aula común + apoyo</text></g>
+      <g class="nodo"><rect x="590" y="152" width="250" height="46" rx="10" fill="#fdf6e8" stroke="#e9a427" stroke-width="2"/><text x="715" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#b07712">DUA + ajustes desde el aula</text><text x="715" y="188" text-anchor="middle" font-size="9.5" fill="#8a6a33">sin etiqueta obligatoria</text></g>
+      <!-- flechas -->
+      <line x1="145" y1="198" x2="360" y2="248" stroke="#e8dcc8" stroke-width="2" marker-end="url(#fl)"/>
+      <line x1="430" y1="198" x2="430" y2="248" stroke="#e8dcc8" stroke-width="2" marker-end="url(#fl)"/>
+      <line x1="715" y1="198" x2="500" y2="248" stroke="#e8dcc8" stroke-width="2" marker-end="url(#fl)"/>
+      <!-- resultado -->
+      <g class="nodo"><rect x="230" y="250" width="400" height="56" rx="14" fill="#2b2b2b"/><text x="430" y="273" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">PARTICIPACIÓN REAL EN EL AULA COMÚN</text><text x="430" y="291" text-anchor="middle" fill="#e9a427" font-size="10">← la variable que este estudio mide empíricamente →</text></g>
+    </svg>
+    <div class="mapa-leyenda">
+      <span class="chip"><i style="background:#cb1d11"></i>Racionalidad biomédica</span>
+      <span class="chip"><i style="background:#008e6c"></i>Racionalidad complementaria</span>
+      <span class="chip"><i style="background:#e9a427"></i>Racionalidad social pura</span>
+    </div>
+  </div>
+  <div class="lectura rv d3"><b>Lectura analítica:</b> los cuatro mecanismos convergen en el DUA como <em>lenguaje</em>, pero divergen en <b>la puerta de entrada al apoyo</b>. Chile condiciona el recurso a la etiqueta; Brasil la usa para activar un servicio paralelo protegido; Colombia y Costa Rica la evitan. Esta variable — "¿qué dispara el apoyo?" — es el corazón del estudio de aula.</div>
+</section>
+
+<!-- ============ S5: MATRIZ P1 ============ -->
+<section id="s5">
+  <div class="num rv"><span class="n">05</span></div>
+  <h2 class="rv">Metodologías concretas de aula, cara a cara</h2>
+  <p class="lead rv d1"><b>Pregunta 1:</b> ¿cómo se traduce cada mecanismo en metodologías de aula (planeación, evaluación, apoyos)? Explora cada componente.</p>
+  <div class="rv d2">
+    <div class="tabs">
+      <div class="tab act" onclick="tab(this,'t-plan')">📐 Planeación</div>
+      <div class="tab" onclick="tab(this,'t-eval')">📝 Evaluación</div>
+      <div class="tab" onclick="tab(this,'t-apo')">🤝 Apoyos</div>
+      <div class="tab" onclick="tab(this,'t-pue')">🚪 Puerta de entrada</div>
+    </div>
+    <div class="matriz">
+      <div class="tabpane act" id="t-plan"><table>
+        <tr><th>Planeación</th><th>🇨🇴 Colombia</th><th>🇨🇱 Chile</th><th>🇧🇷 Brasil</th><th>🇨🇷 Costa Rica</th></tr>
+        <tr><td>Enfoque</td><td>DUA como marco; ajustes razonables desde el docente de aula</td><td>Plan de apoyo individual (PIA) elaborado desde el diagnóstico</td><td>Planeación colaborativa: docente de aula común + docente AEE</td><td>DUA general del sistema; mediación pedagógica</td></tr>
+      </table></div>
+      <div class="tabpane" id="t-eval"><table>
+        <tr><th>Evaluación</th><th>🇨🇴 Colombia</th><th>🇨🇱 Chile</th><th>🇧🇷 Brasil</th><th>🇨🇷 Costa Rica</th></tr>
+        <tr><td>Enfoque</td><td>Formativa diferenciada; sin exigencia diagnóstica para el apoyo</td><td>Diagnóstico integral interdisciplinario obligatorio (ingreso y egreso); tensión con pruebas SIMCE</td><td>Evaluación del AEE centrada en barreras; registro dual</td><td>Evaluación de aprendizajes con ajustes; barreras en la mediación</td></tr>
+      </table></div>
+      <div class="tabpane" id="t-apo"><table>
+        <tr><th>Apoyos</th><th>🇨🇴 Colombia</th><th>🇨🇱 Chile</th><th>🇧🇷 Brasil</th><th>🇨🇷 Costa Rica</th></tr>
+        <tr><td>Enfoque</td><td>Desde el aula regular; apoyos según lineamientos</td><td>Subvención → docente diferencial + especialistas (fonoaudiólogo, psicólogo)</td><td>SRM en contraturno + tecnologías asistivas + docente AEE</td><td>Comités de apoyo institucional; accesibilidad universal</td></tr>
+      </table></div>
+      <div class="tabpane" id="t-pue"><table>
+        <tr><th>Puerta de entrada al apoyo</th><th>🇨🇴 Colombia</th><th>🇨🇱 Chile</th><th>🇧🇷 Brasil</th><th>🇨🇷 Costa Rica</th></tr>
+        <tr><td>¿Qué lo activa?</td><td>Identificación de barreras (sin etiqueta obligatoria)</td><td><b>Etiqueta diagnóstica = financiamiento</b></td><td>Diagnóstico para el AEE (complementario)</td><td>Barreras del entorno (sin etiqueta)</td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S6: PARTICIPACIÓN ============ -->
+<section id="s6">
+  <div class="num rv"><span class="n">06</span></div>
+  <h2 class="rv">La evidencia dura: ¿quién participa de verdad?</h2>
+  <p class="lead rv d1"><b>Pregunta 2:</b> ¿qué mecanismo muestra mayor participación real en el aula común? El SIRIED 2024 (UNESCO) ofrece el punto de partida regional — pero ojo: mide matrícula, no participación dentro del aula. Eso lo mediremos nosotros.</p>
+  <div class="stats">
+    <div class="stat rv d1"><div class="big" data-count="81">0%</div><p>de estudiantes con discapacidad está matriculado en escuelas <b>regulares</b> en la región (19% en especiales)</p></div>
+    <div class="stat rv d2"><div class="big m" data-count="33" data-suf=" ‰">0</div><p>estudiantes con discapacidad por cada mil alcanzan el máximo de presencia <b>a los 12 años</b></p></div>
+    <div class="stat rv d3"><div class="big r" data-count="33">0%</div><p>de abandono: más de un tercio deja la escuela antes de terminar secundaria</p></div>
+  </div>
+  <div class="bars rv d2" id="bars">
+    <p style="font-size:.8rem;font-weight:700;color:var(--gris);margin-bottom:14px">PRESENCIA POR EDAD (por cada 1.000 estudiantes) — la inclusión se desvanece con la edad</p>
+    <div class="bar-row"><div class="lbl"><span>12 años (pico)</span><span class="v">33 ‰</span></div><div class="track"><div class="fill" data-w="100"></div></div></div>
+    <div class="bar-row"><div class="lbl"><span>14 años</span><span class="v">29 ‰</span></div><div class="track"><div class="fill" data-w="88"></div></div></div>
+    <div class="bar-row"><div class="lbl"><span>17 años (final de secundaria)</span><span class="v">24 ‰</span></div><div class="track"><div class="fill" data-w="73"></div></div></div>
+    <p class="esperada">Menos de la mitad de las escuelas regulares recibe a estudiantes con discapacidad · Sector público: 82% en escuelas regulares vs. 18% en especiales.</p>
+  </div>
+  <div class="revealer rv d3">
+    <button class="btn-unab" onclick="revealRank()">🔮 Descubre nuestra hipótesis de participación por país</button>
+    <div class="hidden-rank" id="rank">
+      <div class="rank-item"><b>1</b><span>🇨🇷 <b>Costa Rica</b> — mayor participación esperada: sin etiqueta ni servicio paralelo, el apoyo va <em>hacia</em> el estudiante en el aula.</span></div>
+      <div class="rank-item"><b>2</b><span>🇧🇷 <b>Brasil</b> — alta en matrícula (dual obligatoria), media en tiempo efectivo: el contraturno AEE puede debilitar la presencia.</span></div>
+      <div class="rank-item"><b>3</b><span>🇨🇱 <b>Chile</b> — media y condicionada: sin etiqueta no hay financiamiento → exclusión silenciosa de casos no diagnosticados; ruralidad penalizada.</span></div>
+      <div class="rank-item"><b>4</b><span>🇨🇴 <b>Colombia</b> — media-baja con gran variabilidad: marco favorable, pero donde el docente no domina el DUA, el apoyo no llega.</span></div>
+      <p class="esperada" style="margin-top:10px">Hipótesis a contrastar empíricamente en la Fase 2 (8 escuelas, 16 aulas). El indicador original: <b>"tiempo efectivo de participación en actividades comunes"</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S7: MODELO IDEAL ============ -->
+<section id="s7">
+  <div class="num rv"><span class="n m">07</span></div>
+  <h2 class="rv">Construimos el modelo ideal de la región</h2>
+  <p class="lead rv d1"><b>Pregunta 3:</b> ¿qué elementos de los mecanismos de contraste podrían fortalecer la implementación colombiana? Cada lección es una pieza. <b>Toca las tres</b> para armar el modelo ideal.</p>
+  <div class="piezas">
+    <div class="pieza rv d1" id="pz1" onclick="armar(1,this)"><div class="ic">💰</div><small>Lección chilena · sin su etiqueta</small><h3>Financiamiento previsible por apoyo</h3><p>Subvención per-cápite condicionada a criterios de <b>barreras/contexto</b>, no al diagnóstico clínico. Riesgo controlado: no reproducir la burocratización ni la inequidad territorial chilena.</p></div>
+    <div class="pieza rv d2" id="pz2" onclick="armar(2,this)"><div class="ic">🤝</div><small>Lección brasileña</small><h3>Docente de apoyo institucional</h3><p>Figura de docente de apoyo en cada institución, articulada al PEI y al trabajo colaborativo — y la regla de oro: <b>ningún servicio puede remover al estudiante del aula común</b> como condición del apoyo.</p></div>
+    <div class="pieza rv d3" id="pz3" onclick="armar(3,this)"><div class="ic">📐</div><small>Lección costarricense</small><h3>DUA generalizado vía formación docente</h3><p>DUA como metodología general del sistema (no programa especial), con formación masiva dentro del escalafón docente. Riesgo controlado: evitar "formación de papel" sin cambio en el aula.</p></div>
+  </div>
+  <div class="ideal-target rv d2" id="target">
+    <div class="t1">Síntesis de transferencia</div>
+    <h3>El modelo ideal para la región</h3>
+    <div>
+      <span class="ideal-slot" id="slot1">+ Financiamiento sin etiqueta</span>
+      <span class="ideal-slot" id="slot2">+ Docente de apoyo que no sustituye el aula</span>
+      <span class="ideal-slot" id="slot3">+ DUA en todo el sistema</span>
+    </div>
+    <div class="ideal-msg" id="ideal-msg">Toca las piezas de arriba para activar cada componente…</div>
+  </div>
+  <div class="lectura rv d3"><b>Conclusión del análisis:</b> Colombia no necesita importar la lógica diagnóstica chilena — su modelo teórico es más avanzado. Necesita resolver su <b>brecha de implementación</b> con los tres componentes que sí demuestran los contrastes. Esa matriz será el capítulo de recomendaciones del informe final.</div>
+</section>
+
+<!-- ============ S8: LA INVESTIGACIÓN ============ -->
+<section id="s8">
+  <div class="num rv"><span class="n">08</span></div>
+  <h2 class="rv">La investigación que nace de este viaje</h2>
+  <p class="lead rv d1">Después de analizar los modelos con rigor, la pregunta de investigación se vuelve inevitable:</p>
+  <div class="pregunta-box rv d2">
+    <p class="pq">❝¿Qué diferencias existen en los mecanismos de implementación y en los resultados de aula de la educación inclusiva entre el modelo colombiano y los modelos de Chile, Brasil y Costa Rica?❞</p>
+    <div class="subq">
+      <div class="q" onclick="this.classList.toggle('open')" style="border-top-color:var(--naranja)"><b>Q1 · Metodologías</b>¿Cómo se traduce cada mecanismo en metodologías concretas de aula (planeación, evaluación, apoyos)?</div>
+      <div class="q" onclick="this.classList.toggle('open')"><b>Q2 · Participación</b>¿Qué mecanismo muestra mayor participación real de estudiantes con discapacidad en el aula común?</div>
+      <div class="q" onclick="this.classList.toggle('open')"><b>Q3 · Transferencia</b>¿Qué elementos de los mecanismos de contraste podrían fortalecer la implementación colombiana?</div>
+    </div>
+  </div>
+  <h2 class="rv" style="margin-top:56px;font-size:1.3rem">Hipótesis que pondremos a prueba</h2>
+  <div class="hipos">
+    <div class="hipo rv d1"><span class="h-tag">H1</span><p>Los modelos <b>sin etiqueta diagnóstica</b> (Costa Rica) generan mayor participación y menor estigmatización que los modelos de diagnóstico-financiamiento (Chile).</p><div class="verif">Se verifica con: observación de aula + grupos focales con estudiantes.</div></div>
+    <div class="hipo rv d2"><span class="h-tag">H2</span><p>El modelo colombiano comparte base teórica con el costarricense (barreras + DUA), pero difiere en instrumentos operativos, generando brechas de implementación.</p><div class="verif">Se verifica con: análisis documental PEER + comparación de planeaciones.</div></div>
+    <div class="hipo rv d3"><span class="h-tag">H3</span><p>La <b>eficiencia institucional</b> (formación docente, recursos) explica más la varianza en resultados que el tipo de mecanismo normativo — consistente con Emerald 2025 (58,7–68,1% de la varianza).</p><div class="verif">Se verifica con: registro de insumos por escuela + análisis transversal.</div></div>
+  </div>
+  <h2 class="rv" style="margin-top:56px;font-size:1.3rem">El marco teórico que sostiene el análisis</h2>
+  <div class="marco-grid">
+    <div class="marco-card rv d1">
+      <h3>🧠 Las dos racionalidades</h3>
+      <div class="vs">
+        <div class="bio"><b>Modelo biomédico</b>El déficit está en la persona; el diagnóstico abre la puerta al "tratamiento".</div>
+        <div class="soc"><b>Modelo social</b>Las barreras están en el entorno; se transforman sistemas, no personas.</div>
+      </div>
+      <p style="font-size:.8rem;color:var(--tinta-suave);margin-top:10px">Chile encarna la primera; Colombia, Brasil y Costa Rica, la segunda — con operativas distintas.</p>
+    </div>
+    <div class="marco-card rv d2">
+      <h3>📐 DUA — el denominador común</h3>
+      <p style="font-size:.8rem;color:var(--tinta-suave)">Tres principios basados en neurociencia (CAST): toca cada uno.</p>
+      <div class="dua-3">
+        <div onclick="this.style.background='#fdf6e8'">Representación<span>Múltiples formas de presentar los contenidos</span></div>
+        <div onclick="this.style.background='#fdf6e8'">Acción y expresión<span>Múltiples formas de demostrar el aprendizaje</span></div>
+        <div onclick="this.style.background='#fdf6e8'">Implicación<span>Múltiples formas de comprometer al estudiante</span></div>
+      </div>
+    </div>
+    <div class="marco-card rv d3">
+      <h3>🧭 Índice de Inclusión (Booth & Ainscow)</h3>
+      <p style="font-size:.8rem;color:var(--tinta-suave)">Nuestro sistema de codificación en tres dimensiones:</p>
+      <div class="idx3">
+        <div>Cultura<small>Valores y pertenencia</small></div>
+        <div>Políticas<small>Organización y apoyo</small></div>
+        <div>Prácticas<small>Lo que pasa en el aula</small></div>
+      </div>
+    </div>
+    <div class="marco-card rv d4">
+      <h3>⚖️ Educación comparada</h3>
+      <p style="font-size:.84rem;color:var(--tinta-suave)"><b>Método de Bereday:</b> descripción → interpretación → yuxtaposición → comparación.<br><b>Cubo de Bray & Thomas:</b> niveles (aula/escuela/sistema) × actores × contextos.<br><b>PRISMA 2020</b> para el módulo documental · Plataforma <b>PEER</b> de UNESCO como base de datos de políticas.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo-unab" style="justify-content:center">
+    <div class="marca">unab</div>
+  </div>
+  <p class="fm"><b>Investigación comparada sobre educación inclusiva y diversidad en América Latina.</b><br>
+  Fuentes clave: UNESCO GEM 2020 regional · SIRIED 2024 "Hacia una educación sin barreras" · Villegas Álvarez et al. (2026), Revista InveCom · OEI (2024) "DUA en Iberoamérica" · Booth & Ainscow, Index for Inclusion · CAST · Emerald IJCED (2025) · Peña (2013), crítica al Decreto 170.<br>
+  Diseño conforme al Manual de Identidad de Marca UNAB (Open Sans · #e9a427 · #8600dd).</p>
+  <div class="legal-f">VIGILADA MINEDUCACIÓN</div>
+</footer>
+
+<script>
+/* ===== Reveal gradual ===== */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* ===== Rail activo ===== */
+const secs=[...document.querySelectorAll('section[id]')],dots=[...document.querySelectorAll('.rail a')];
+const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){dots.forEach(d=>d.classList.remove('act'));const i=secs.indexOf(e.target);if(dots[i])dots[i].classList.add('act')}})},{threshold:.3});
+secs.forEach(s=>io2.observe(s));
+/* ===== Contadores ===== */
+const io3=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,t=+el.dataset.count;const suf=el.dataset.suf!==undefined?el.dataset.suf:'%';let n=0;const st=Math.max(1,Math.round(t/40));const iv=setInterval(()=>{n+=st;if(n>=t){n=t;clearInterval(iv)}el.textContent=n+suf},30);io3.unobserve(el)}})},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>io3.observe(el));
+/* ===== Barras ===== */
+const io4=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');io4.unobserve(e.target)}})},{threshold:.4});
+document.querySelectorAll('#bars').forEach(b=>io4.observe(b));
+/* ===== Países S2 ===== */
+const PA={
+ co:{t:'🇨🇴 Colombia — el punto de partida',p:'Modelo social + DUA (Ley 1618/2013, Decreto 1421/2017). Es la unidad de análisis principal: la investigación nace y vuelve a ella. Su paradoja — marco teórico avanzado con implementación desigual — es exactamente la brecha que el estudio busca explicar y cerrar.'},
+ cl:{t:'🇨🇱 Chile — el contraste opuesto',p:'Único modelo de la región que condiciona el apoyo al <b>diagnóstico profesional</b> (Decreto 170). Permite evaluar rigurosamente los costos de la lógica de déficit frente a la lógica de barreras: financiamiento asegurado, pero exclusión silenciosa de quienes nunca reciben etiqueta.'},
+ br:{t:'🇧🇷 Brasil — el apoyo sin sustitución',p:'El mecanismo complementario más maduro de la región (AEE + Salas de Recursos) y el sistema con mejor eficiencia institucional medida (Emerald 2025). Permite estudiar cómo operaría un apoyo especializado sin sacrificar el aula común.'},
+ cr:{t:'🇨🇷 Costa Rica — el gemelo metodológico',p:'Compartimos su base teórica (barreras + DUA) pero vamos más lejos en lo operativo: permite estudiar la inclusión <b>sin etiquetas ni servicios paralelos</b>. Es el espejo que revela qué le falta a Colombia en implementación.'}
+};
+function selPais(k,el){document.querySelectorAll('.pais').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');const d=document.getElementById('pais-det');d.style.opacity=0;d.innerHTML='<h3>'+PA[k].t+'</h3><p class="porque">'+PA[k].p+'</p>';setTimeout(()=>d.style.transition='opacity .5s',10);requestAnimationFrame(()=>{d.style.opacity=1})}
+/* ===== Tabs S5 ===== */
+function tab(el,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('act'));el.classList.add('act');document.querySelectorAll('.tabpane').forEach(p=>p.classList.remove('act'));document.getElementById(id).classList.add('act')}
+/* ===== Ranking S6 ===== */
+function revealRank(){document.getElementById('rank').classList.add('show')}
+/* ===== Modelo ideal S7 ===== */
+let armed=0;const msg=['Pieza 1 conectada: el financiamiento deja de depender del diagnóstico…','Pieza 2 conectada: el apoyo se queda dentro del aula común…','¡Modelo ideal completo! Financiamiento sin etiqueta + apoyo que no sustituye + DUA generalizado. Esa es la síntesis que la comparación rigurosa nos permitió entender.'];
+function armar(n,el){if(el.classList.contains('on'))return;el.classList.add('on');document.getElementById('slot'+n).classList.add('on');document.getElementById('ideal-msg').textContent=msg[n-1];armed++;}
+</script>
+</body>
+</html>
