@@ -246,7 +246,7 @@
 <section id="s1">
   <div class="num rv"><span class="n">01</span></div>
   <h2 class="rv">Mi punto de partida: tres barreras en la evidencia</h2>
-  <p class="lead rv d1">Cuando revisé las revisiones sistemáticas de la producción científica latinoamericana (2020–2024), encontré un diagnóstico que se repite: la región investiga mucho sobre <em>barreras</em>, pero poco sobre <em>soluciones comparadas (Villegas Álvarez et al., 2025)</em>. Toca cada barrera para ver su posible solución.</p>
+  <p class="lead rv d1">Cuando revisé las revisiones sistemáticas de la producción científica latinoamericana (2020–2024), encontré un diagnóstico que se repite: la región investiga mucho sobre <em>barreras</em>, pero poco sobre <em>soluciones comparadas (Villegas Álvarez et al., 2025)</em>. </p>
   <div class="barriers">
     <div class="flip rv d1" onclick="this.classList.toggle('open')">
       <span class="plus">+</span>
@@ -273,8 +273,8 @@
 <!-- ============ S2: PAÍSES ============ -->
 <section id="s2">
   <div class="num rv"><span class="n">02</span></div>
-  <h2 class="rv">Cuatro países, cuatro lógicas que elegí para contrastar</h2>
-  <p class="lead rv d1">Colombia es mi caso base — es mi país y donde nace mi pregunta. Los otros tres los elegí porque cada uno aporta un mecanismo <em>estructuralmente diferente</em>. Selecciona un país para descubrir por qué lo invité a esta comparación.</p>
+  <h2 class="rv">Cuatro países, cuatro lógicas que descubrí para contrastar</h2>
+  <p class="lead rv d1">Como mi país de residencia, Colombia es nuestro caso base, a partir del cual debemos ir construyendo el ideal. Los otros tres los elegí porque cada uno aporta un mecanismo <em>estructuralmente diferente</em>. </p>
   <div class="paises">
     <div class="pais rv d1 sel" data-p="co" onclick="selPais('co',this)"><div class="flag">🇨🇴</div><h3>Colombia</h3><div class="rol">Caso base</div><p class="mec">Modelo social + DUA</p></div>
     <div class="pais rv d2" data-p="cl" onclick="selPais('cl',this)"><div class="flag">🇨🇱</div><h3>Chile</h3><div class="rol">Contraste biomédico-financiero</div><p class="mec">PIE + financiamiento por diagnóstico</p></div>
@@ -282,8 +282,8 @@
     <div class="pais rv d4" data-p="cr" onclick="selPais('cr',this)"><div class="flag">🇨🇷</div><h3>Costa Rica</h3><div class="rol">Contraste curricular puro</div><p class="mec">DUA general del sistema</p></div>
   </div>
   <div id="pais-det" class="rv d2">
-    <h3>🇨🇴 Colombia — mi punto de partida</h3>
-    <p class="porque">Comparto con Colombia la base teórica (modelo social + DUA): es la unidad de análisis principal — mi investigación nace y vuelve a ella. Su paradoja, marco teórico avanzado con implementación desigual, es exactamente la brecha que busco explicar y cerrar.</p>
+    <h3>🇨🇴 Colombia</h3>
+    <p class="porque">Comparto con Colombia la base teórica (modelo social + DUA): es la unidad de análisis principal. Esta investigación nace y vuelve a ella. Su paradoja, marco teórico avanzado con implementación desigual.</p>
   </div>
 </section>
 
@@ -546,10 +546,10 @@ const io4=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.ta
 document.querySelectorAll('#bars').forEach(b=>io4.observe(b));
 /* ===== Países S2 ===== */
 const PA={
- co:{t:'🇨🇴 Colombia — mi punto de partida',p:'Modelo social + DUA (Ley 1618/2013, Decreto 1421/2017). Es la unidad de análisis principal: mi investigación nace y vuelve a ella. Su paradoja — marco teórico avanzado con implementación desigual — es exactamente la brecha que busco explicar y cerrar.'},
- cl:{t:'🇨🇱 Chile — el contraste opuesto',p:'Único modelo de la región que condiciona el apoyo al <b>diagnóstico profesional</b> (Decreto 170). Lo elegí para evaluar rigurosamente los costos de la lógica de déficit frente a la lógica de barreras: financiamiento asegurado, pero exclusión silenciosa de quienes nunca reciben etiqueta.'},
- br:{t:'🇧🇷 Brasil — el apoyo sin sustitución',p:'El mecanismo complementario más maduro de la región (AEE + Salas de Recursos) y el sistema con mejor eficiencia institucional medida (Emerald 2025). Lo elegí para estudiar cómo operaría un apoyo especializado sin sacrificar el aula común.'},
- cr:{t:'🇨🇷 Costa Rica — el gemelo metodológico',p:'Comparto con Costa Rica la base teórica (barreras + DUA), pero ellos fueron más lejos en lo operativo: me permite estudiar la inclusión <b>sin etiquetas ni servicios paralelos</b>. Es el espejo que me revela qué le falta a Colombia en implementación.'}
+ co:{t:'🇨🇴 Colombia',p:'Modelo social + DUA (Ley 1618/2013, Decreto 1421/2017). Es la unidad de análisis principal: mi investigación nace y vuelve a ella. Su paradoja es el marco teórico avanzado con implementación desigual.'},
+ cl:{t:'🇨🇱 Chile',p:'Único modelo de la región que condiciona el apoyo al <b>diagnóstico profesional</b> (Decreto 170). Sirve para evaluar rigurosamente los costos de la lógica de déficit frente a la lógica de barreras: financiamiento asegurado, pero exclusión silenciosa de quienes nunca reciben etiqueta.'},
+ br:{t:'🇧🇷 Brasil',p:'El mecanismo complementario más maduro de la región (AEE + Salas de Recursos) y el sistema con mejor eficiencia institucional medida (Emerald 2025). Sirve para estudiar cómo operaría un apoyo especializado sin sacrificar el aula común.'},
+ cr:{t:'🇨🇷 Costa Rica',p:'Usa la misma base teórica colombiana (barreras + DUA), pero ellos fueron más lejos en lo operativo: permite estudiar la inclusión <b>sin etiquetas ni servicios paralelos</b>. Es el espejo que revela qué le falta a Colombia en implementación.'}
 };
 function selPais(k,el){document.querySelectorAll('.pais').forEach(p=>p.classList.remove('sel'));el.classList.add('sel');const d=document.getElementById('pais-det');d.style.opacity=0;d.innerHTML='<h3>'+PA[k].t+'</h3><p class="porque">'+PA[k].p+'</p>';setTimeout(()=>d.style.transition='opacity .5s',10);requestAnimationFrame(()=>{d.style.opacity=1})}
 /* ===== Tabs S5 ===== */
